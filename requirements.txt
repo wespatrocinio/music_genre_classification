@@ -1,0 +1,8 @@
+pandas
+sklearn
+numpy
+nltk
+jupyter
+langdetect
+flask
+flask-restplus
