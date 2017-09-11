@@ -6,3 +6,4 @@ jupyter
 langdetect
 flask
 flask-restplus
+wtforms

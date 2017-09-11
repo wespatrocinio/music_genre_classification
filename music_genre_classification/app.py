@@ -3,6 +3,7 @@ from flask import Flask
 from flask_restplus import Api
 from flask_restplus import fields
 from flask_restplus import Resource
+from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField
 
 from pandas import DataFrame
 from sklearn.externals import joblib
@@ -54,6 +55,21 @@ class MusicGenreApi(Resource):
             classifier = pickle.load(f)
         X = DataFrame(tfidf.transform([lyrics]).toarray())
         return {"result": classifier.predict(X)}
+
+    def hello():
+        form = ReusableForm(request.form)
+        print form.errors
+        if request.method == 'POST':
+            name=request.form['name']
+            print name
+
+            if form.validate():
+                # Save the comment here.
+                flash('Hello ' + name)
+            else:
+                flash('All the form fields are required. ')
+
+        return render_template('input.html', form=form)
 
 if __name__ == '__main__':
     app.run(debug=True)
